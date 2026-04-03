@@ -2,39 +2,35 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-primary: #000000;
-  --color-primary-hover: #333333;
+  /* Dark Red Theme Palette */
+  --color-primary: #DC2626;
+  --color-primary-hover: #B91C1C;
   --color-primary-foreground: #FFFFFF;
-  --color-secondary: #F4F4F5;
-  --color-secondary-foreground: #18181B;
-  --color-background: #FFFFFF;
-  --color-foreground: #09090B;
-  --color-muted: #F4F4F5;
-  --color-accent: #F4F4F5;
+  --color-secondary: #1C1017;
+  --color-secondary-foreground: #FECDD3;
+  --color-background: #0F0709;
+  --color-foreground: #FFF1F2;
+  --color-surface: #1A0D11;
+  --color-surface-hover: #2A1219;
+  --color-muted: #44282F;
+  --color-muted-foreground: #FDA4AF;
+  --color-accent: #DC2626;
+  --color-accent-foreground: #FFFFFF;
   --color-destructive: #EF4444;
   --color-success: #10B981;
-  
+  --color-border: #3B1520;
+  --color-input-bg: #1A0D11;
+  --color-card: #150A0E;
+  --color-card-border: #2D1219;
+
   --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --radius: 0.5rem;
   --radius-sm: 0.25rem;
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
   * {
-    border-color: hsl(var(--border) / 1);
+    border-color: var(--color-border);
   }
   body {
     background-color: var(--color-background);
