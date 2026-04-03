@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Radar, IconContainer } from "@/components/ui/radar-effect";
 import { 
   TrendingUp, 
