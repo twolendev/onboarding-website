@@ -5,6 +5,7 @@ import { submitOnboardingToAI } from './services/api';
 import type { OnboardingData, AIPlanResponse } from './services/api';
 import type { Result } from './utils/errors';
 import { BackgroundPaths } from '@/components/ui/background-paths';
+import { RadarEffectDemo } from '@/components/radar-demo';
 
 export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
@@ -70,7 +71,12 @@ export default function App() {
   };
 
   if (!hasStarted) {
-    return <BackgroundPaths onStart={() => setHasStarted(true)} />;
+    return (
+      <div className="w-full flex flex-col relative z-10">
+        <BackgroundPaths onStart={() => setHasStarted(true)} />
+        <RadarEffectDemo />
+      </div>
+    );
   }
 
   // ─── Loading State ───

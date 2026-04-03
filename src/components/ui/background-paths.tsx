@@ -2,18 +2,16 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 function FloatingPaths({ position }: { position: number }) {
-    const paths = Array.from({ length: 36 }, (_, i) => ({
-        id: i,
-        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
-            380 - i * 5 * position
-        } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
-            152 - i * 5 * position
-        } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
-            684 - i * 5 * position
-        } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-        color: `rgba(220,38,38,${0.1 + i * 0.03})`,
-        width: 0.5 + i * 0.03,
-    }));
+    const paths = Array.from({ length: 36 }, (_, i) => {
+        // Creates perfectly straight, parallel lines that flow like a "rainbow spectrum" across the page
+        const offset = i * 25 * position;
+        return {
+            id: i,
+            d: `M-200 ${300 + offset} L1000 ${-100 + offset}`,
+            color: `rgba(220,38,38,${0.1 + i * 0.02})`,
+            width: 0.5 + i * 0.03,
+        };
+    });
 
     return (
         <div className="absolute inset-0 pointer-events-none">
@@ -59,7 +57,7 @@ export function BackgroundPaths({
 
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
-            <div className="absolute inset-0">
+            <div className="fixed inset-0 pointer-events-none z-0">
                 <FloatingPaths position={1} />
                 <FloatingPaths position={-1} />
             </div>
