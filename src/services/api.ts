@@ -9,38 +9,35 @@ export interface OnboardingData {
 }
 
 export interface AIPlanResponse {
-  planId: string;
-  message: string;
+  plan: string;
 }
 
-// Simulated Circuit Breaker for our API endpoint
-const aiApiCircuitBreaker = new CircuitBreaker(2, 5000); // 2 fails trips it, 5s timeout
+// Circuit Breaker: 2 consecutive failures trips it, 10s cooldown
+const aiApiCircuitBreaker = new CircuitBreaker(2, 10000);
 
 export async function submitOnboardingToAI(data: OnboardingData): Promise<Result<AIPlanResponse, ExternalAIError>> {
-  console.log("Submitting AI Onboarding Form Data:", data); // Prevents unused variables error
-  
   try {
     const result = await aiApiCircuitBreaker.call(async () => {
-      // MOCK: Simulate network latency
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/api/generate-plan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      // MOCK: Randomly fail about 1 in 5 times to simulate backend flakiness and demonstrate error handling
-      if (Math.random() < 0.2) {
-        throw new Error("Timeout communicating with the AI service");
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.error || `HTTP ${response.status}`);
       }
-      
-      // Simulate real-ish return
-      return {
-        planId: `plan_${Math.floor(Math.random() * 10000)}`,
-        message: "Your personalized strength plan has been successfully generated."
-      };
+
+      const json = await response.json();
+      return json as AIPlanResponse;
     });
 
     return Ok(result);
   } catch (err: unknown) {
     if (err instanceof Error) {
-      return Err(new ExternalAIError("Failed to reach AI Engine", { original: err.message }));
+      return Err(new ExternalAIError(err.message, { original: err.message }));
     }
-    return Err(new ExternalAIError("An unknown error occurred while analyzing the data."));
+    return Err(new ExternalAIError("An unknown error occurred while generating the plan."));
   }
 }
