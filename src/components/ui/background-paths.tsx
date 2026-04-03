@@ -52,23 +52,26 @@ export function BackgroundPaths({
                     </div>
 
                     {/* Right Image with CSS Red Lighting Tricks */}
-                    <div className="absolute right-0 top-0 bottom-0 w-[130%] sm:w-[90%] md:w-[70%] lg:w-[60%] flex items-end justify-end overflow-hidden pointer-events-none z-0">
-                         {/* The Image (Assumes white background in the raw file) */}
+                    <div className="absolute right-0 top-0 bottom-0 w-[130%] sm:w-[90%] md:w-[70%] lg:w-[65%] flex items-end justify-end overflow-hidden pointer-events-none z-0">
+                         {/* 1. Underlying dark red studio background */}
+                         <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-[#1a0000] to-[#400000] z-0"></div>
+
+                         {/* 2. The Image: mix-blend-multiply merges the white background perfectly into the dark red base, while darkening the man */}
                          <img 
                              src="/man.jpg" 
                              alt="Hero Model" 
-                             className="absolute right-0 bottom-[-10%] h-[100%] md:h-[120%] w-auto object-cover object-bottom z-10"
+                             className="absolute right-[-5%] bottom-0 h-[100%] md:h-[115%] w-auto object-cover object-bottom z-10 mix-blend-multiply contrast-[1.1] grayscale-[10%]"
                          />
                          
-                         {/* Multiplicative Red Glow Overlay (turns white bg into deep red shadow) */}
-                         <div className="absolute inset-0 z-20 bg-gradient-to-tr from-[#050505] via-[#5a0000] to-[#b30000] mix-blend-multiply opacity-100"></div>
+                         {/* 3. Rim Light Overlay: Adds a vibrant red light hitting him from the right, using overlay to preserve midtones */}
+                         <div className="absolute inset-0 z-20 bg-gradient-to-l from-red-600/60 via-red-900/10 to-transparent mix-blend-overlay"></div>
                          
-                         {/* Red Highlight/Flare to simulate studio light */}
-                         <div className="absolute top-1/4 right-0 w-96 h-96 bg-red-600/30 blur-[100px] z-30 mix-blend-screen rounded-full"></div>
+                         {/* 4. Flare/Light Source: A soft bright red glow to anchor the lighting effect */}
+                         <div className="absolute top-1/4 right-[-10%] w-[30rem] h-[30rem] bg-red-600/40 blur-[120px] z-30 mix-blend-screen rounded-full"></div>
                          
-                         {/* Black Gradients from left/bottom to smooth transition into the environment */}
-                         <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent z-40"></div>
-                         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#050505] to-transparent z-40"></div>
+                         {/* 5. Seamless Masking Gradients: Fades the right container into the profound black background on the left and bottom */}
+                         <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent z-40"></div>
+                         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent z-40"></div>
                     </div>
                 </div>
 
