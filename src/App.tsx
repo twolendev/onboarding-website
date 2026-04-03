@@ -4,8 +4,10 @@ import { ChevronRight, Activity, CalendarDays, ShieldAlert, Cpu, CheckCircle2, R
 import { submitOnboardingToAI } from './services/api';
 import type { OnboardingData, AIPlanResponse } from './services/api';
 import type { Result } from './utils/errors';
+import { BackgroundPaths } from '@/components/ui/background-paths';
 
 export default function App() {
+  const [hasStarted, setHasStarted] = useState(false);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<OnboardingData>({
     statsAndGoals: '',
@@ -53,6 +55,7 @@ export default function App() {
   };
 
   const handleReset = () => {
+    setHasStarted(false);
     setStep(0);
     setSubmissionResult(null);
     setFormData({ statsAndGoals: '', schedule: '', limitations: '' });
@@ -66,11 +69,14 @@ export default function App() {
     setSubmissionResult(result);
   };
 
+  if (!hasStarted) {
+    return <BackgroundPaths onStart={() => setHasStarted(true)} />;
+  }
+
   // ─── Loading State ───
   if (isSubmitting) {
     return (
       <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
-        <Header />
         <main className="flex-1 flex items-center justify-center px-6">
           <div className="flex flex-col items-center gap-6 text-center">
             <div className="relative">
@@ -97,7 +103,6 @@ export default function App() {
   if (submissionResult?.ok) {
     return (
       <div className="min-h-screen bg-background text-foreground font-sans">
-        <Header />
         <main className="max-w-4xl mx-auto px-6 pt-12 pb-24">
           <div className="flex items-center gap-3 mb-8 pb-6 border-b border-red-900/30">
             <div className="w-12 h-12 bg-green-900/30 text-green-500 rounded-full flex items-center justify-center border border-green-800/30">
@@ -120,7 +125,7 @@ export default function App() {
               onClick={handleReset}
               className="bg-red-600 text-white hover:bg-red-700 transition-colors px-8 py-3 rounded-md font-medium inline-flex items-center gap-2 group shadow-lg shadow-red-900/30"
             >
-              Generate New Plan <RotateCcw className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-300" />
+              Start Over <RotateCcw className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-300" />
             </button>
           </div>
         </main>
@@ -132,7 +137,6 @@ export default function App() {
   if (submissionResult && !submissionResult.ok) {
     return (
       <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
-        <Header />
         <main className="flex-1 flex items-center justify-center px-6">
           <div className="flex flex-col items-center justify-center text-center max-w-lg">
             <div className="w-16 h-16 bg-red-950/50 text-red-500 rounded-full flex items-center justify-center mb-6 border border-red-900/30">
@@ -170,12 +174,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-red-900/40">
-      <Header />
       <main className="max-w-5xl mx-auto px-6 pt-16 pb-24">
         <div className="w-full max-w-2xl mx-auto space-y-8" key={step}>
 
           {/* Progress */}
-          <div className="w-full mb-10">
+          <div className="w-full mb-10 mt-8">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium text-red-300/50 tracking-wide uppercase">Question {step + 1} of {questions.length}</span>
               <span className="text-sm font-medium text-red-400">{Math.round((step / questions.length) * 100)}%</span>
@@ -230,17 +233,5 @@ export default function App() {
         </div>
       </main>
     </div>
-  );
-}
-
-function Header() {
-  return (
-    <header className="border-b border-red-900/20 bg-background/80 backdrop-blur-md sticky top-0 z-10 w-full">
-      <div className="max-w-5xl mx-auto px-6 h-20 flex items-center">
-        <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="AuraStrength" className="h-10 w-auto" />
-        </div>
-      </div>
-    </header>
   );
 }
