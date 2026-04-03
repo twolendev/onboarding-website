@@ -54,8 +54,8 @@ Erstelle mir bitte einen detaillierten, personalisierten Krafttrainingsplan.`;
       messages: [{ role: "user", content: userMessage }],
     });
 
-    const textBlock = message.content.find((b: any) => b.type === "text");
-    const plan = textBlock ? textBlock.text : "No plan generated.";
+    const textBlock = message.content.find((b) => b.type === "text");
+    const plan = textBlock && "text" in textBlock ? textBlock.text : "No plan generated.";
 
     return res.status(200).json({ plan });
   } catch (err: any) {
