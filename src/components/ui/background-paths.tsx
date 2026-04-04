@@ -25,9 +25,14 @@ export function BackgroundPaths({
                         </Button>
 
                         {/* Logo */}
-                        <div className="flex items-center space-x-3 hidden sm:flex">
-                            <img src="/logo.png" alt="AuraStrength" className="h-8 md:h-10 w-auto opacity-90" />
-                            <span className="text-white font-bold tracking-widest text-lg md:text-xl uppercase">
+                        <div className="flex items-center space-x-4 hidden sm:flex">
+                            <img 
+                                src="/logo.png" 
+                                alt="AuraStrength" 
+                                className="h-10 md:h-14 lg:h-16 w-auto opacity-100" 
+                                style={{ filter: "brightness(0) saturate(100%) invert(21%) sepia(74%) saturate(6145%) hue-rotate(349deg) brightness(97%) contrast(115%)" }}
+                            />
+                            <span className="text-red-600 font-black tracking-widest text-xl md:text-2xl uppercase drop-shadow-md">
                                 AuraStrength
                             </span>
                         </div>
