@@ -10,7 +10,7 @@ export function BackgroundPaths({
         <div className="relative min-h-screen w-full bg-[#050505] p-3 md:p-8 overflow-hidden flex items-stretch">
             
             {/* The Framing / "Einkachelung" */}
-            <div className="relative flex-1 w-full border border-neutral-800/80 rounded-[2.5rem] overflow-hidden flex flex-col z-10 bg-black/40">
+            <div className="relative flex-1 w-full border-2 border-neutral-800/80 rounded-[2.5rem] overflow-hidden flex flex-col z-10 bg-black/40">
                 
                 {/* Navbar area */}
                 <div className="flex items-center justify-between p-6 md:p-12 pb-0 z-50 relative">
@@ -50,9 +50,9 @@ export function BackgroundPaths({
                             transition={{ duration: 1 }}
                             className="text-5xl sm:text-6xl md:text-[5rem] leading-[1.1] font-light text-neutral-200 uppercase tracking-wide"
                         >
-                            Build Your <br/>
-                            <span className="font-bold text-white">Elite Physique</span> <br/>
-                            Like A Pro
+                            Your Plan <br/>
+                            <span className="font-bold text-white">Backed By</span> <br/>
+                            Science
                         </motion.h1>
                     </div>
 
@@ -80,19 +80,8 @@ export function BackgroundPaths({
                     </div>
                 </div>
 
-                {/* Bottom Section */}
-                <div className="p-6 md:p-12 z-50">
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 1 }}
-                        className="w-full flex justify-center md:justify-start"
-                    >
-                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-red-600 uppercase tracking-widest text-center md:text-left drop-shadow-md pb-4 md:pb-0">
-                            We make your strength impossible to ignore
-                        </h2>
-                    </motion.div>
-                </div>
+                {/* Bottom Section (Spacing maintained) */}
+                <div className="p-6 md:p-12 z-50"></div>
             </div>
         </div>
     );
