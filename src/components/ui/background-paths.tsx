@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 export function BackgroundPaths({
     onStart,
@@ -15,15 +14,6 @@ export function BackgroundPaths({
                 {/* Navbar area */}
                 <div className="flex items-center justify-between p-6 md:p-12 pb-0 z-50 relative">
                     <div className="flex items-center space-x-4 md:space-x-10">
-                        {/* CTA button */}
-                        <Button
-                            variant="secondary"
-                            onClick={onStart}
-                            className="rounded-full px-5 py-2 text-sm md:text-base font-semibold bg-white text-black hover:bg-neutral-200 transition-all border-none"
-                        >
-                            Build Your Plan ↓
-                        </Button>
-
                         {/* Logo */}
                         <div className="flex items-center space-x-4 hidden sm:flex">
                             <img 
@@ -42,18 +32,34 @@ export function BackgroundPaths({
                 {/* Main Hero Body */}
                 <div className="flex-1 flex flex-col md:flex-row relative z-10 p-6 md:p-12">
 
-                    {/* Left Typography */}
-                    <div className="flex-1 flex flex-col justify-center max-w-2xl pt-10 md:pt-0 z-20">
-                        <motion.h1 
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1 }}
-                            className="text-5xl sm:text-6xl md:text-[5rem] leading-[1.1] font-light text-neutral-200 uppercase tracking-wide"
-                        >
-                            Your Plan <br/>
-                            Backed By <br/>
-                            <span className="font-bold text-white">Science</span>
-                        </motion.h1>
+                    {/* Left Typography & CTA */}
+                    <div className="flex-1 flex flex-col justify-center max-w-4xl pt-10 md:pt-0 z-20">
+                        <div className="flex flex-col md:flex-row items-start md:items-end gap-6 md:gap-10">
+                            <motion.h1 
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1 }}
+                                className="text-5xl sm:text-6xl md:text-[5rem] leading-[1.1] font-light text-neutral-200 uppercase tracking-wide"
+                            >
+                                Your Plan <br/>
+                                Backed By <br/>
+                                <span className="font-bold text-white">Science</span>
+                            </motion.h1>
+
+                            {/* New Call to Action Button */}
+                            <motion.button
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.5, duration: 0.8 }}
+                                onClick={onStart}
+                                className="group relative px-6 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-red-600 hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] mb-4 md:mb-6"
+                            >
+                                <span className="relative z-10 flex items-center gap-2">
+                                    Stop Guessing, Start Growing
+                                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                </span>
+                            </motion.button>
+                        </div>
                     </div>
 
                     {/* Right Image with CSS Red Lighting Tricks */}
