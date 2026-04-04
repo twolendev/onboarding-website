@@ -13,8 +13,8 @@ import {
 
 export function RadarEffectDemo() {
   return (
-    <div className="flex min-h-screen py-32 w-full items-center justify-center bg-transparent mt-32">
-      <div className="relative flex h-[35rem] w-full max-w-4xl flex-col items-center justify-center space-y-12 overflow-hidden px-4">
+    <div className="flex w-full items-center justify-center bg-transparent">
+      <div className="relative flex min-h-[45rem] w-full max-w-4xl flex-col items-center justify-center space-y-12 overflow-hidden px-4">
         {/* Row 1 */}
         <div className="mx-auto w-full max-w-2xl text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Scientific Foundations</h2>

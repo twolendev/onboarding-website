@@ -79,7 +79,13 @@ export default function App() {
       {/* Permanent Background Elements */}
       <div className={`transition-all duration-700 ${isModalOpen ? 'blur-lg scale-95 opacity-50 pointer-events-none' : 'blur-0 scale-100 opacity-100'}`}>
         <BackgroundPaths onStart={() => setIsModalOpen(true)} />
-        <RadarEffectDemo />
+        
+        {/* Radar Section with the same framing */}
+        <div className="relative min-h-screen w-full bg-[#050505] p-3 md:p-8 overflow-hidden flex items-stretch">
+            <div className="relative flex-1 w-full border-2 border-neutral-800/80 rounded-[2.5rem] overflow-hidden flex flex-col items-center justify-center z-10 bg-black/40">
+                <RadarEffectDemo />
+            </div>
+        </div>
       </div>
 
       {/* Onboarding Modal Overlay */}
