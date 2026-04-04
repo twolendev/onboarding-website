@@ -111,7 +111,7 @@ export default function App() {
               {/* Close Button */}
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 text-red-300/40 hover:text-red-500 transition-colors p-2 z-50"
+                className="absolute top-2 right-2 text-red-300/40 hover:text-red-500 transition-colors p-2 z-50"
               >
                 <X className="w-6 h-6" />
               </button>
