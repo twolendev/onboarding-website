@@ -51,8 +51,8 @@ export function BackgroundPaths({
                             className="text-5xl sm:text-6xl md:text-[5rem] leading-[1.1] font-light text-neutral-200 uppercase tracking-wide"
                         >
                             Your Plan <br/>
-                            <span className="font-bold text-white">Backed By</span> <br/>
-                            Science
+                            Backed By <br/>
+                            <span className="font-bold text-white">Science</span>
                         </motion.h1>
                     </div>
 
